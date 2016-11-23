@@ -64,6 +64,29 @@
 		
 		
 		<!-- Cerca un impiegato-->
+		<h3>Inserisci l'ID di un impiegato e premi il bottone per cercarlo:</h3>
+		<form action="http://127.0.0.1:1337/" method="post" id="searchForm">
+		    <div class="col-md-1">
+		    	<input class="form-control" name="id" id="searchId" type="number" placeholder="ID"><br>
+		    </div>
+		    <button class="btn btn-info btn-md" type="button" onclick="searchEmployee()">Cerca employee</button>
+		</form>
+	    <div id='searchResult' style="display: none">
+	        <br>
+	        <label>ID:</label>
+	        <p id="show_ID"></p>
+	        <label>Name:</label>
+	        <p id="show_Name"></p>
+	        <label>Surname:</label>
+	        <p id="show_Surname"></p>
+	        <label>Level:</label>
+	        <p id="show_Level"></p>
+	        <label>Salary:</label>
+	        <p id="show_Salary"></p>      
+	        <br>
+	    </div>
+
+	    <br>
 		
 
 		<!-- Cancella un impiegato-->
