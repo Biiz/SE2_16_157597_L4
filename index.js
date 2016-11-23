@@ -36,12 +36,12 @@ app.use('/', function(request, response){
     //set the headers of the responce
     response.writeHead(200, headers);
 
-	var text = '';
+    var text = '';
 
-	//codice da eseguire se il body della request è correttamente definito
-	if ( typeof request.body !== 'undefined' && request.body){
+    //codice da eseguire se il body della request è correttamente definito
+    if ( typeof request.body !== 'undefined' && request.body){
 
-		console.log("request.body: " + util.inspect(request.body) + "\n");
+        console.log("request.body: " + util.inspect(request.body) + "\n");
         var json;
         
         var option;
@@ -53,10 +53,10 @@ app.use('/', function(request, response){
         
         //inizializzo l'opzione che intendo eseguire
         if ( typeof request.body.option !== 'undefined' && request.body.option)
-			option = request.body.option;
+            option = request.body.option;
 
         //codice da eseguire se la scelta è di aggiungere un employee
-		if (option =="addEmployee") {
+        if (option =="addEmployee") {
             //verifico la presenza dell'ID
             if ( typeof request.body.id !== 'undefined' && request.body.id) {
                 id = request.body.id;
@@ -115,7 +115,6 @@ app.use('/', function(request, response){
             });
             
         }
-
         //codice da eseguire se la scelta è di cercare un employee
         else if (option =="searchEmployee") {
             //verifico la presenza dell'ID
@@ -146,8 +145,7 @@ app.use('/', function(request, response){
                 });
             }
         }
-        
-		//codice da eseguire se la scelta è di cancellare un employee
+        //codice da eseguire se la scelta è di cancellare un employee
         else if (option =="deleteEmployee") {
             //verifico la presenza dell'ID
             if ( typeof request.body.id !== 'undefined' && request.body.id)
@@ -173,13 +171,13 @@ app.use('/', function(request, response){
                 });
             }
         }
-	}
-	//codice da eseguire se il body della request non è stato definito
-	else {
+    }
+    //codice da eseguire se il body della request non è stato definito
+    else {
         json = JSON.stringify({ 
             answer: "body undefined"
         });
-	}
+    }
     console.log(json);
     console.log("END OF POST/GET REQUEST\n");
     //answer a JSON file
@@ -190,5 +188,3 @@ app.use('/', function(request, response){
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
-
-
