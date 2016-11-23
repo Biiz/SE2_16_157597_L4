@@ -143,7 +143,25 @@ function deleteEmployee(){
 	//nascondo il form di aggiunta employee
 	document.getElementById('addForm').style.display = 'none';
 	
+    // inizializzo il form
+    form = document.getElementById("deleteEmployeeForm");
+    //creo e inizializzo i campi del form
+    var id = document.getElementById('deleteID').value;
 
+    // se il campo ID è vuoto viene mostrato un alert
+    if (id == '') alert("input non valido");
+    //altrimenti invoco la funzione per gestire il JSON
+    else {
+        xhr = retrieveData(form,"deleteEmployee");
+        xhr.onloadend = function (){
+            var result=xhr.responseText;
+            result = JSON.parse(result);
+            console.log(result);
+            if(result.answer != undefined) {
+                alert(result.answer.toString());
+            }
+        };
+    }
     //svuoto l'input del form di eliminazione employee
 	document.getElementById('deleteEmployeeForm').reset();
 }
