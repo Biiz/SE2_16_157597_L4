@@ -14,7 +14,7 @@
 		
 		<br>
 
-		<form action="" method="post" id="addForm" style="display: none">
+		<form action="http://127.0.0.1:1337/" method="post" id="addForm" style="display: none">
 			<h4>Se l'ID non è inserito, verrà creato incrementando il valore del ID più alto.</h4>
 		    <div class="row">
 			    <div class="col-md-1">
@@ -62,7 +62,6 @@
 		
 		<br>
 		
-		
 		<!-- Cerca un impiegato-->
 		<h3>Inserisci l'ID di un impiegato e premi il bottone per cercarlo:</h3>
 		<form action="http://127.0.0.1:1337/" method="post" id="searchForm">
@@ -88,8 +87,15 @@
 
 	    <br>
 		
-
 		<!-- Cancella un impiegato-->
+		<h3>Inserisci l'ID di un impiegato e premi il bottone per eliminarlo:</h3>
+		<form action="http://127.0.0.1:1337/" method="post" id="deleteEmployeeForm">
+		    <div class="col-md-1">
+		    	<input class="form-control" name="id" id="deleteID" type="number" placeholder="ID"><br>
+		    </div>
+		    <button class="btn btn-danger btn-md" type="button" onclick="deleteEmployee()">Cancella employee</button>
+		</form>
+		<br>
 		
 	</div>
 	 
