@@ -149,6 +149,29 @@ app.use('/', function(request, response){
         
 		//codice da eseguire se la scelta è di cancellare un employee
         else if (option =="deleteEmployee") {
+            //verifico la presenza dell'ID
+            if ( typeof request.body.id !== 'undefined' && request.body.id)
+                id = request.body.id;
+            var found = false;
+
+            //itero la lista degli impiegati per vedere se l'employee è presente
+            for (var i = 0; i < Object.keys(employees_list).length; ++i) {
+                //se l'employee è presente lo cancello
+                if (employees_list[i].id == id){
+                    found = true;
+                    employees_list.splice(i, 1);
+                    //converto in una stringa JSON
+                     json = JSON.stringify({ 
+                        answer: "employee cancellato correttamente "
+                    });
+                }
+            }
+            //se l'employee non è stato trovato
+            if (!found) {
+                json = JSON.stringify({ 
+                    answer: "employee non trovato"
+                });
+            }
         }
 	}
 	//codice da eseguire se il body della request non è stato definito
