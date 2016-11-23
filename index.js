@@ -118,6 +118,33 @@ app.use('/', function(request, response){
 
         //codice da eseguire se la scelta è di cercare un employee
         else if (option =="searchEmployee") {
+            //verifico la presenza dell'ID
+            if ( typeof request.body.id !== 'undefined' && request.body.id)
+                id = request.body.id;
+            var found = false;
+
+            //itero la lista degli impiegati per vedere se l'employee è presente
+            for (var i = 0; i < Object.keys(employees_list).length; ++i) {
+                //se l'employee è presente lo spedisco con il JSON
+                if (employees_list[i].id == id){
+                    found = true;
+                    //converto in una stringa JSON
+                    json = JSON.stringify({ 
+                        id: employees_list[i].id,
+                        name: employees_list[i].name, 
+                        surname: employees_list[i].surname, 
+                        level: employees_list[i].level,
+                        salary: employees_list[i].salary
+                    });
+                    console.log("Trovato employee: ");
+                }
+            }
+            //se l'employee non è stato trovato
+            if (!found) {
+                json = JSON.stringify({ 
+                    answer: "Employee non trovato"
+                });
+            }
         }
         
 		//codice da eseguire se la scelta è di cancellare un employee
