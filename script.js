@@ -93,7 +93,38 @@ function searchEmployee(){
 	//nascondo il form di aggiunta employee
 	document.getElementById('addForm').style.display = 'none';
 
+    // inizializzo il form
+    form = document.getElementById("searchForm");
+    // //creo e inizializzo i campi del form
+    var id = document.getElementById('searchId').value;
 
+    //se il campo ID è vuoto viene mostrato un alert
+    if (id == '')  alert("input non valido");
+    // altrimenti invoco la funzione per gestire il JSON
+    else {
+    	// spedisco il JSON invocando la procedura
+        xhr = retrieveData(form,"searchEmployee");
+        // ricevo il JSON con i dati da inserire nel HTML
+        xhr.onloadend = function (){
+            var result=xhr.responseText;
+            result = JSON.parse(result);
+            console.log(result);
+            // se ID è presente mostro le caratteristiche dell'impiegato
+            if(result.id != undefined) {
+                document.getElementById('searchResult').style.display = 'block';
+                document.getElementById('show_ID').innerHTML = result.id;
+                document.getElementById('show_Name').innerHTML = result.name;
+                document.getElementById('show_Surname').innerHTML = result.surname;
+                document.getElementById('show_Level').innerHTML = result.level;
+                document.getElementById('show_Salary').innerHTML = result.salary;
+            }
+			// se ID non è presente viene mostrato un alert e nascosto l'eventuale risultato precedente
+            else {
+                document.getElementById('searchResult').style.display = 'none';
+                alert(result.answer.toString());
+            }
+        };
+    }
     //svuoto l'input del form di ricerca employee
 	document.getElementById('searchForm').reset();
 }
